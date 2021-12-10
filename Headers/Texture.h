@@ -11,9 +11,9 @@ namespace O3DCppEngine
 		DECLARE_CLASS(Texture);
 	protected:
 
-		std::string		mTextureName;
-		vect2Dui		mTexturePixelSize;
-		unsigned int*	mTexturePixelBuffer;
+		std::string		mFileName;
+		vect2Dui		mPixelSize;
+		unsigned int*	mPixelBuffer=nullptr;
 
 		void	init() override;
 		void	close() override;
@@ -33,33 +33,33 @@ namespace O3DCppEngine
 
 	public:
 
-		std::string getTextureName()
+		std::string getFileName()
 		{
-			return mTextureName;
+			return mFileName;
 		}
 
-		void setTextureName(const std::string& name)
+		void setFileName(const std::string& name)
 		{
-			mTextureName = name;
+			mFileName = name;
 		}
 
 		unsigned int	getPixel(unsigned int px, unsigned int py) const
 		{
-			if ((px >= mTexturePixelSize.x) || (py >= mTexturePixelSize.y))
+			if ((px >= mPixelSize.x) || (py >= mPixelSize.y))
 			{
 				return 0xFFFFFFFF;
 			}
-			return mTexturePixelBuffer[px + py * mTexturePixelSize.x];
+			return mPixelBuffer[px + py * mPixelSize.x];
 		}
 
 		void	setPixel(unsigned int px, unsigned int py, unsigned int color) const
 		{
-			if ((px >= mTexturePixelSize.x) || (py >= mTexturePixelSize.y))
+			if ((px >= mPixelSize.x) || (py >= mPixelSize.y))
 			{
 				return;
 			}
 
-			mTexturePixelBuffer[px + py * mTexturePixelSize.x] = color;
+			mPixelBuffer[px + py * mPixelSize.x] = color;
 		}
 
 	};
