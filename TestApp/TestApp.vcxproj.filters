@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="CppEngine">
+      <UniqueIdentifier>{c5d80e5b-3896-4516-a855-c42f7c9809dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CppEngine\Headers">
+      <UniqueIdentifier>{e7a20208-7198-4347-9596-5c920dea5e1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CppEngine\Sources">
+      <UniqueIdentifier>{c21c50b0-e173-470c-88d9-ab900ee1e8d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CppEngine\ConsoleEngine">
+      <UniqueIdentifier>{72a5d342-bc4e-41c4-8203-4d56fe175b26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TestApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ConsoleEngine\bitmap.c">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ConsoleEngine\ConsoleDisplay.c">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ConsoleEngine\DisplayZoneDrawing.c">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ConsoleEngine\DVector.c">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ConsoleEngine\ini.c">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ConsoleEngine\Inputs.c">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ConsoleEngine\MiniFactory.c">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ConsoleEngine\ParamsList.c">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ConsoleEngine\TimeManagement.c">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\DisplayBase.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Factory.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\CppEngine.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\EngineManagedClass.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\CppConsoleEngine.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Shape2D.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\vect2D.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Segment2D.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Sprite.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\ConsoleEngine\bitmap.h">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ConsoleEngine\ConsoleDisplay.h">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ConsoleEngine\DisplayZoneDrawing.h">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ConsoleEngine\DVector.h">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ConsoleEngine\ini.h">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ConsoleEngine\Inputs.h">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ConsoleEngine\MiniFactory.h">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ConsoleEngine\ParamsList.h">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ConsoleEngine\TimeManagement.h">
+      <Filter>CppEngine\ConsoleEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\DisplayBase.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Factory.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\CppEngine.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\EngineManagedClass.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\CppConsoleDisplay.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Shape2D.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\vect2D.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Drawable.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Segment2D.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Sprite.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
