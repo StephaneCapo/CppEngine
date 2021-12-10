@@ -160,6 +160,7 @@
     <ClCompile Include="..\Sources\Segment2D.cpp" />
     <ClCompile Include="..\Sources\Shape2D.cpp" />
     <ClCompile Include="..\Sources\Sprite.cpp" />
+    <ClCompile Include="..\Sources\Texture.cpp" />
     <ClCompile Include="..\Sources\vect2D.cpp" />
     <ClCompile Include="TestApp.cpp" />
   </ItemGroup>
@@ -182,6 +183,7 @@
     <ClInclude Include="..\Headers\Segment2D.h" />
     <ClInclude Include="..\Headers\Shape2D.h" />
     <ClInclude Include="..\Headers\Sprite.h" />
+    <ClInclude Include="..\Headers\Texture.h" />
     <ClInclude Include="..\Headers\vect2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

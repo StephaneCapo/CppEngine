@@ -3,7 +3,7 @@
 
 using namespace O3DCppEngine;
 
-void DisplayBase::memset32(unsigned int* dst, unsigned int val, unsigned int ui32count) const
+void DisplayBase::memset32(unsigned int* dst, unsigned int val, unsigned int ui32count)
 {
 	while (ui32count)
 	{

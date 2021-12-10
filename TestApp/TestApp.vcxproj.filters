@@ -84,6 +84,9 @@
     <ClCompile Include="..\Sources\Sprite.cpp">
       <Filter>CppEngine\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\Sources\Texture.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ConsoleEngine\bitmap.h">
@@ -141,6 +144,9 @@
       <Filter>CppEngine\Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\Headers\Sprite.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Texture.h">
       <Filter>CppEngine\Headers</Filter>
     </ClInclude>
   </ItemGroup>

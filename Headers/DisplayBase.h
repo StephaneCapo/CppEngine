@@ -1,6 +1,7 @@
 #pragma once
 #include "EngineManagedClass.h"
 #include "Drawable.h"
+#include "Texture.h"
 #include <vector>
 
 namespace O3DCppEngine
@@ -10,7 +11,7 @@ namespace O3DCppEngine
 	{
 	protected:
 
-		void memset32(unsigned int* dst, unsigned int val, unsigned int ui32count) const;
+		static void memset32(unsigned int* dst, unsigned int val, unsigned int ui32count);
 
 		unsigned int mPixelSizeX = 320;
 		unsigned int mPixelSizeY = 240;
@@ -27,17 +28,6 @@ namespace O3DCppEngine
 		// render All drawables in the order of the list
 		// 
 		void renderAll();
-
-		static unsigned int blendAlpha(unsigned int colora, unsigned int colorb)
-		{
-			unsigned int alpha = colorb >> 24;
-
-			unsigned int rb1 = ((0xFF - alpha) * (colora & 0xFF00FF)) >> 8;
-			unsigned int rb2 = (alpha * (colorb & 0xFF00FF)) >> 8;
-			unsigned int g1 = ((0xFF - alpha) * (colora & 0x00FF00)) >> 8;
-			unsigned int g2 = (alpha * (colorb & 0x00FF00)) >> 8;
-			return ((rb1 + rb2) & 0xFF00FF) | ((g1 + g2) & 0x00FF00) | 0xFF000000;
-		}
 
 	public:
 
@@ -89,7 +79,7 @@ namespace O3DCppEngine
 
 			if ((color & 0xFF000000) != 0xFF000000) // transparency
 			{
-				color = blendAlpha(mPixelBuffer[px + py * mPixelSizeX], color);
+				color = Texture::blendAlpha(mPixelBuffer[px + py * mPixelSizeX], color);
 			}
 			if (color & 0xFF000000) // not fully transparent
 				mPixelBuffer[px + py * mPixelSizeX] = color;
