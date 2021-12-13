@@ -14,7 +14,7 @@ namespace O3DCppEngine
 		Factory();
 		~Factory();
 
-		std::map<std::string, createCppEngineClass>	mClassCreationMap;
+		std::map<std::string, createCppEngineClass>					mClassCreationMap;
 		std::map<std::string, std::shared_ptr<EngineManagedClass>>	mSingletonMap;
 
 	public:

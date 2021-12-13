@@ -87,6 +87,12 @@
     <ClCompile Include="..\Sources\Texture.cpp">
       <Filter>CppEngine\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\Sources\CppBitmapDisplay.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\PixelBufferDrawer.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ConsoleEngine\bitmap.h">
@@ -147,6 +153,12 @@
       <Filter>CppEngine\Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\Headers\Texture.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\CppBitmapDisplay.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\PixelBufferDrawer.h">
       <Filter>CppEngine\Headers</Filter>
     </ClInclude>
   </ItemGroup>

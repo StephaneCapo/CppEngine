@@ -20,7 +20,7 @@ void Factory::registerClass(const std::string& name, createCppEngineClass func)
 std::shared_ptr<EngineManagedClass> Factory::getInstance(const std::string& name)
 {
 	// search class in map
-	auto found = mClassCreationMap.find(name);
+	auto	 found = mClassCreationMap.find(name);
 	// if class was found
 	if (found != mClassCreationMap.end())
 	{

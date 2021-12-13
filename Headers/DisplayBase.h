@@ -2,6 +2,7 @@
 #include "EngineManagedClass.h"
 #include "Drawable.h"
 #include "Texture.h"
+#include "PixelBufferDrawer.h"
 #include <vector>
 
 namespace O3DCppEngine
@@ -58,35 +59,6 @@ namespace O3DCppEngine
 
 		virtual ~DisplayBase();
 
-		unsigned int	getPixel(unsigned int px, unsigned int py) const
-		{
-			if ((px >= mPixelSizeX) || (py>= mPixelSizeY))
-			{
-				return 0xFFFFFFFF;
-			}
-			return mPixelBuffer[px + py * mPixelSizeX];
-		}
-
-		void	setPixel(unsigned int px, unsigned int py,unsigned int color,float Z) const
-		{
-			if ((px >= mPixelSizeX) || (py >= mPixelSizeY))
-			{
-				return;
-			}
-
-			if (Z < mZBuffer[px + py * mPixelSizeX])
-				return;
-
-			if ((color & 0xFF000000) != 0xFF000000) // transparency
-			{
-				color = Texture::blendAlpha(mPixelBuffer[px + py * mPixelSizeX], color);
-			}
-			if (color & 0xFF000000) // not fully transparent
-				mPixelBuffer[px + py * mPixelSizeX] = color;
-
-			mZBuffer[px + py * mPixelSizeX] = Z;
-		}
-
 		float get2DCurrentDisplayZ() const
 		{
 			return m2DCurrentDisplayZ;
@@ -96,6 +68,8 @@ namespace O3DCppEngine
 		{
 			m2DCurrentDisplayZ=Z;
 		}
+
+		PixelBufferDrawer<true>	getPixelDrawer() const;
 	};
 
 	// RGBA to unsigned int

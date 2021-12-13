@@ -71,7 +71,7 @@ unsigned int	DisplayBase::add(std::shared_ptr<Drawable> drw)
 // return true if found 
 bool			DisplayBase::removeFirst(std::shared_ptr<Drawable> drw)
 {
-	auto it = mDrawableList.begin();
+	std::vector< std::shared_ptr<Drawable>>::iterator it = mDrawableList.begin();
 	while(it != mDrawableList.end())
 	{
 		if ((*it) == drw)
@@ -79,6 +79,7 @@ bool			DisplayBase::removeFirst(std::shared_ptr<Drawable> drw)
 			mDrawableList.erase(it);
 			return true;
 		}
+		++it;
 	}
 	return false;
 }
@@ -92,6 +93,7 @@ void			DisplayBase::removeAll(std::shared_ptr<Drawable> drw)
 		{
 			it=mDrawableList.erase(it);
 		}
+		++it;
 	}
 	
 }
@@ -117,4 +119,10 @@ void DisplayBase::renderAll()
 	{
 		drw->render(this);
 	}
+}
+
+
+PixelBufferDrawer<true>	DisplayBase::getPixelDrawer() const
+{
+	return PixelBufferDrawer<true>(mPixelBuffer, mPixelSizeX, mPixelSizeY, mZBuffer);
 }

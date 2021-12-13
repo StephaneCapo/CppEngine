@@ -1,5 +1,6 @@
 #include "Segment2D.h"
 #include "DisplayBase.h"
+#include "PixelBufferDrawer.h"
 
 using namespace O3DCppEngine;
 
@@ -10,6 +11,7 @@ vect2Df& Segment2D::operator [](size_t index)
 
 void	Segment2D::render(const DisplayBase* disp)
 {
+	// TODO optimize this (a lot)
 	vect2Df	transformPoses[2];
 	
 	mTransform.transform(transformPoses, mPoses, 2);
@@ -18,6 +20,8 @@ void	Segment2D::render(const DisplayBase* disp)
 	v-= transformPoses[0];
 
 	float dispZ = disp->get2DCurrentDisplayZ();
+
+	PixelBufferDrawer<true> drawer = disp->getPixelDrawer();
 
 	if (fabsf(v.x) > fabsf(v.y))
 	{
@@ -31,7 +35,7 @@ void	Segment2D::render(const DisplayBase* disp)
 		float coefx = 1.0f;
 		for (int x = (int)transformPoses[0].x; x <= (int)transformPoses[1].x; x++)
 		{
-			disp->setPixel(x, y, mColor, dispZ);
+			drawer.setPixel(x, y, mColor, dispZ);
 			y = (int)(transformPoses[0].y + coefy * coefx);
 			coefx += 1.0f;
 		}
@@ -49,7 +53,7 @@ void	Segment2D::render(const DisplayBase* disp)
 		float coefy = 1.0f;
 		for (int y = (int)transformPoses[0].y; y <= (int)transformPoses[1].y; y++)
 		{
-			disp->setPixel(x, y, mColor, dispZ);
+			drawer.setPixel(x, y, mColor, dispZ);
 			x = (int)(transformPoses[0].x + coefx * coefy);
 			coefy += 1.0f;
 		}
