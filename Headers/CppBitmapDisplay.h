@@ -6,6 +6,7 @@
 
 namespace O3DCppEngine
 {
+	// implementation of DisplayBase for displaying a bitmap buffer in the console
 	class CppBitmapDisplay : public DisplayBase
 	{
 		DECLARE_CLASS(CppBitmapDisplay)
@@ -14,6 +15,12 @@ namespace O3DCppEngine
 		DisplaySettings* mDisplaySettings = nullptr; // just for console init
 		HWND mConsoleHandle;
 		HDC  mDeviceContext;
+
+		// max displaySize for bitmap display is 1024*720
+		vect2Dui	getMaxPixelSize() const override
+		{
+			return { 1024,720 };
+		}
 	public:
 
 		CppBitmapDisplay() : DisplayBase()

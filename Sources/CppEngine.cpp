@@ -9,9 +9,10 @@
 
 using namespace O3DCppEngine;
 
-// init Factory
+
 CppEngine::CppEngine()
 {
+	// init Factory
 	mFactory = new Factory();
 
 	// register core classes
@@ -28,5 +29,8 @@ CppEngine::CppEngine()
 
 CppEngine::~CppEngine()
 {
+	if (mFactory)
+		delete mFactory;
 
+	mFactory = nullptr;
 }

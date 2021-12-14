@@ -1,6 +1,7 @@
 #pragma once
 #include "EngineManagedClass.h"
 #include "vect2D.h"
+#include "PixelBufferDrawer.h"
 
 namespace O3DCppEngine
 {
@@ -11,6 +12,8 @@ namespace O3DCppEngine
 	protected:
 
 		virtual void	render(const DisplayBase* disp) = 0;
+
+		PixelBufferDrawer<true, false>	getUnsafePixelDrawer(const DisplayBase* disp) const;
 
 	public:
 

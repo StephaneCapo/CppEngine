@@ -21,7 +21,7 @@ void	Segment2D::render(const DisplayBase* disp)
 
 	float dispZ = disp->get2DCurrentDisplayZ();
 
-	PixelBufferDrawer<true> drawer = disp->getPixelDrawer();
+	PixelBufferDrawer<true,true> drawer = disp->getPixelDrawer();
 
 	if (fabsf(v.x) > fabsf(v.y))
 	{

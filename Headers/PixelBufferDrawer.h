@@ -2,7 +2,8 @@
 
 namespace O3DCppEngine
 {
-	template<bool useZ>
+	// safetyChecks check if pixel coordinates is in the good range
+	template<bool useZ,bool safetyChecks>
 	class PixelBufferDrawer
 	{
 	protected:
@@ -33,18 +34,24 @@ namespace O3DCppEngine
 
 		inline unsigned int	getPixel(unsigned int px, unsigned int py) const
 		{
-			if ((px >= mPixelSizeX) || (py >= mPixelSizeY))
+			if (safetyChecks)
 			{
-				return 0xFFFFFFFF;
+				if ((px >= mPixelSizeX) || (py >= mPixelSizeY))
+				{
+					return 0xFFFFFFFF;
+				}
 			}
 			return mPixelBuffer[px + py * mPixelSizeX];
 		}
 
 		inline void	setPixel(unsigned int px, unsigned int py, unsigned int color, float Z=0.0f) const
 		{
-			if ((px >= mPixelSizeX) || (py >= mPixelSizeY))
+			if (safetyChecks)
 			{
-				return;
+				if ((px >= mPixelSizeX) || (py >= mPixelSizeY))
+				{
+					return;
+				}
 			}
 
 			if (useZ)
@@ -53,12 +60,14 @@ namespace O3DCppEngine
 					return;
 			}
 
-			if ((color & 0xFF000000) != 0xFF000000) // transparency
-			{
-				color = blendAlpha(mPixelBuffer[px + py * mPixelSizeX], color);
-			}
 			if (color & 0xFF000000) // not fully transparent
+			{
+				if ((color & 0xFF000000) != 0xFF000000) // transparency
+				{
+					color = blendAlpha(mPixelBuffer[px + py * mPixelSizeX], color);
+				}
 				mPixelBuffer[px + py * mPixelSizeX] = color;
+			}
 
 			if (useZ)
 			{

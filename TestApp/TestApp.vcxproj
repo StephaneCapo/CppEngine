@@ -156,6 +156,7 @@
     <ClCompile Include="..\Sources\CppConsoleEngine.cpp" />
     <ClCompile Include="..\Sources\CppEngine.cpp" />
     <ClCompile Include="..\Sources\DisplayBase.cpp" />
+    <ClCompile Include="..\Sources\Drawable.cpp" />
     <ClCompile Include="..\Sources\EngineManagedClass.cpp" />
     <ClCompile Include="..\Sources\Factory.cpp" />
     <ClCompile Include="..\Sources\PixelBufferDrawer.cpp" />

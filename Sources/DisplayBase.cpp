@@ -3,6 +3,7 @@
 
 using namespace O3DCppEngine;
 
+// fill ui23count unsigned int array with given unsigned int val
 void DisplayBase::memset32(unsigned int* dst, unsigned int val, unsigned int ui32count)
 {
 	while (ui32count)
@@ -29,11 +30,14 @@ void	DisplayBase::setDisplaySize(unsigned int pixelSizeX, unsigned int pixelSize
 	if (pixelSizeY < 120)
 		pixelSizeY = 120;
 
+	// retrieve implementation max available size
+	auto msize = getMaxPixelSize();
+
 	// max size
-	if (pixelSizeX > 640)
-		pixelSizeX = 640;
-	if (pixelSizeY > 480)
-		pixelSizeY = 480;
+	if (pixelSizeX > msize.x)
+		pixelSizeX = msize.x;
+	if (pixelSizeY > msize.y)
+		pixelSizeY = msize.y;
 
 	// arrondi sur un multiple de 4
 
@@ -122,7 +126,12 @@ void DisplayBase::renderAll()
 }
 
 
-PixelBufferDrawer<true>	DisplayBase::getPixelDrawer() const
+PixelBufferDrawer<true,true>	DisplayBase::getPixelDrawer() const
 {
-	return PixelBufferDrawer<true>(mPixelBuffer, mPixelSizeX, mPixelSizeY, mZBuffer);
+	return PixelBufferDrawer<true,true>(mPixelBuffer, mPixelSizeX, mPixelSizeY, mZBuffer);
+}
+
+PixelBufferDrawer<true, false>	DisplayBase::getUnsafePixelDrawer() const
+{
+	return PixelBufferDrawer<true, false>(mPixelBuffer, mPixelSizeX, mPixelSizeY, mZBuffer);
 }

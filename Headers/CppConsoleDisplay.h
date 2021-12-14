@@ -12,6 +12,13 @@ namespace O3DCppEngine
 	protected:
 		DisplaySettings* mDisplaySettings=nullptr;
 		DisplayZone* mFullScreenZone = nullptr;
+
+		// max displaySize for console display is 320*240
+		vect2Dui	getMaxPixelSize() const override
+		{
+			return { 320,240 };
+		}
+
 	public:
 
 		CppConsoleDisplay() : DisplayBase()

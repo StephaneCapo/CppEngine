@@ -13,19 +13,19 @@ using namespace O3DCppEngine;
 int main()
 {
     CppEngine   engine;
-    auto display=std::static_pointer_cast<DisplayBase>(engine.getFactory().getSingleton("Display"));
+    auto display=engine.getFactory().getSingleton<DisplayBase>("Display");
 
-    display->setDisplaySize(320, 240);
+    display->setDisplaySize(640, 480);
     display->init();
 
-    auto segment= std::static_pointer_cast<Segment2D>(engine.getFactory().getInstance("Segment2D"));
+    auto segment= engine.getFactory().getInstance<Segment2D>("Segment2D");
     (*segment)[0] = vect2Df( -159,-119 );
     (*segment)[1] = vect2Df( 159, 119);
     segment->getTransform().setTranslation(vect2Df(160, 120));
 
     display->add(segment);
 
-    auto texture= std::static_pointer_cast<Texture>(engine.getFactory().getInstance("Texture"));
+    auto texture= engine.getFactory().getInstance<Texture>("Texture");
     texture->setFileName("BBYoda.bmp");
     texture->init();
     // main loop

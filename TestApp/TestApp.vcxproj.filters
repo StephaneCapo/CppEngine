@@ -93,6 +93,9 @@
     <ClCompile Include="..\Sources\PixelBufferDrawer.cpp">
       <Filter>CppEngine\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\Sources\Drawable.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ConsoleEngine\bitmap.h">
