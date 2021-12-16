@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 
 namespace O3DCppEngine
 {
@@ -27,3 +28,6 @@ public:
 		return *mFactory;
 	}
 };
+
+template<typename T>
+using sp=std::shared_ptr<T>;

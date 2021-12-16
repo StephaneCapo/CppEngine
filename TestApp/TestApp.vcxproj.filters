@@ -96,6 +96,12 @@
     <ClCompile Include="..\Sources\Drawable.cpp">
       <Filter>CppEngine\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\Sources\Poly_3_4_Rasterizer.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Rectangle2D.cpp">
+      <Filter>CppEngine\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ConsoleEngine\bitmap.h">
@@ -162,6 +168,18 @@
       <Filter>CppEngine\Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\Headers\PixelBufferDrawer.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Poly_3_4_Rasterizer.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\Rectangle2D.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\VerticeType.h">
+      <Filter>CppEngine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Headers\DrawUtils.h">
       <Filter>CppEngine\Headers</Filter>
     </ClInclude>
   </ItemGroup>

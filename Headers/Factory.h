@@ -35,7 +35,7 @@ namespace O3DCppEngine
 			return std::static_pointer_cast<T>(genericGetInstance(name));
 		}
 		// retrieve a singleton instance given its generic name
-		template<typename T = EngineManagedClass>
+		template<typename T>
 		std::shared_ptr<T>		getSingleton(const std::string& name)
 		{
 			return std::static_pointer_cast<T>(genericGetSingleton(name));

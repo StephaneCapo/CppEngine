@@ -1,9 +1,10 @@
 #pragma once
+#include <vector>
 #include "EngineManagedClass.h"
 #include "Drawable.h"
 #include "Texture.h"
 #include "PixelBufferDrawer.h"
-#include <vector>
+#include "Poly_3_4_Rasterizer.h"
 
 namespace O3DCppEngine
 {
@@ -85,8 +86,20 @@ namespace O3DCppEngine
 
 		// access to unsafe pixeldrawer
 		friend class Drawable;
+
+		template <typename ... components>
+		void rasterizePoly(std::vector<std::tuple<components...>>& verticelist) const;
+
 	};
 
-// RGBA to unsigned int
-#define ENCODE_COLOR(r,g,b,a) ((unsigned int)((r)|(g<<8)|(b<<16)|(a<<24)))
+	template <typename ... components>
+	void DisplayBase::rasterizePoly(std::vector<std::tuple<components...>>& verticelist) const
+	{
+		PixelBufferDrawer<true, false>	drawer = getUnsafePixelDrawer();
+		Poly_3_4_Rasterizer<true, components...>		rast(drawer);
+
+		rast.draw(verticelist);
+	}
+
+
 }

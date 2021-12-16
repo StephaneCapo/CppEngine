@@ -42,6 +42,13 @@ public:
 
 	vect2D operator +(const vect2D& a) const;
 
+	vect2D operator *(T nbr) const
+	{
+		vect2D<T> tmp(x, y);
+		tmp *= nbr;
+		return tmp;
+	}
+
 	// operateur pour récupérer une des composantes du vecteur
 	T& operator [](size_t index);
 

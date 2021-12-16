@@ -1,4 +1,6 @@
 #pragma once
+#include "vect2D.h"
+#include "DrawUtils.h"
 
 namespace O3DCppEngine
 {
@@ -7,48 +9,86 @@ namespace O3DCppEngine
 	class PixelBufferDrawer
 	{
 	protected:
-		unsigned int	mPixelSizeX;
-		unsigned int	mPixelSizeY;
+		vect2Dui		mPixelSize;
 		unsigned int*	mPixelBuffer;
 		float*			mZBuffer = nullptr;
 
-		static unsigned int blendAlpha(unsigned int colora, unsigned int colorb)
-		{
-			unsigned int alpha = colorb >> 24;
-
-			unsigned int rb1 = ((0xFF - alpha) * (colora & 0xFF00FF)) >> 8;
-			unsigned int rb2 = (alpha * (colorb & 0xFF00FF)) >> 8;
-			unsigned int g1 = ((0xFF - alpha) * (colora & 0x00FF00)) >> 8;
-			unsigned int g2 = (alpha * (colorb & 0x00FF00)) >> 8;
-			return ((rb1 + rb2) & 0xFF00FF) | ((g1 + g2) & 0x00FF00) | 0xFF000000;
-		}
+		
 
 	public:
+
+		
+
+		class DrawerLine
+		{
+		protected:
+			float*			 mZBufferLine = nullptr;
+			unsigned int*	 mPixelBufferLine = nullptr;
+			unsigned int	 mLineSize;
+
+			DrawerLine(unsigned int* pixelline, unsigned int lineSize, float* zline = nullptr) : mZBufferLine(zline)
+				, mPixelBufferLine(pixelline)
+				, mLineSize(lineSize)
+			{
+
+			}
+
+		public:
+
+			friend class PixelBufferDrawer;
+
+			inline void	setPixel(unsigned int px, unsigned int color, float Z = 0.0f) const
+			{
+				if (safetyChecks)
+				{
+					if (px >= mLineSize)
+					{
+						return;
+					}
+				}
+
+				if (useZ)
+				{
+					if (Z < mZBufferLine[px])
+						return;
+					mZBufferLine[px] = Z;
+				}
+
+				if (color & 0xFF000000) // not fully transparent
+				{
+					if ((color & 0xFF000000) != 0xFF000000) // transparency
+					{
+						color = blendAlpha(mPixelBufferLine[px], color);
+					}
+					mPixelBufferLine[px] = color;
+				}
+			}
+		};
+
 		PixelBufferDrawer(unsigned int* pixelBuffer, unsigned int psx, unsigned int psy,float* zbuf=nullptr) : mPixelBuffer(pixelBuffer)
-			, mPixelSizeX(psx)
-			, mPixelSizeY(psy)
 			, mZBuffer(zbuf)
 		{
-
+			mPixelSize.x = psx;
+			mPixelSize.y = psy;
 		}
 
 		inline unsigned int	getPixel(unsigned int px, unsigned int py) const
 		{
 			if (safetyChecks)
 			{
-				if ((px >= mPixelSizeX) || (py >= mPixelSizeY))
+				if ((px >= mPixelSize.x) || (py >= mPixelSize.y))
 				{
 					return 0xFFFFFFFF;
 				}
 			}
-			return mPixelBuffer[px + py * mPixelSizeX];
+			return mPixelBuffer[px + py * mPixelSize.x];
 		}
 
 		inline void	setPixel(unsigned int px, unsigned int py, unsigned int color, float Z=0.0f) const
 		{
 			if (safetyChecks)
 			{
-				if ((px >= mPixelSizeX) || (py >= mPixelSizeY))
+				if ((px >= mPixelSize.x) || (py >= mPixelSize.y))
 				{
 					return;
 				}
@@ -56,23 +96,38 @@ namespace O3DCppEngine
 
 			if (useZ)
 			{
-				if (Z < mZBuffer[px + py * mPixelSizeX])
+				if (Z < mZBuffer[px + py * mPixelSize.x])
 					return;
+				mZBuffer[px + py * mPixelSize.x] = Z;
 			}
 
 			if (color & 0xFF000000) // not fully transparent
 			{
 				if ((color & 0xFF000000) != 0xFF000000) // transparency
 				{
-					color = blendAlpha(mPixelBuffer[px + py * mPixelSizeX], color);
+					color = blendAlpha(mPixelBuffer[px + py * mPixelSize.x], color);
 				}
-				mPixelBuffer[px + py * mPixelSizeX] = color;
+				mPixelBuffer[px + py * mPixelSize.x] = color;
+			}
+		}
+		vect2Dui getPixelSize()
+		{
+			return mPixelSize;
+		}
+
+		DrawerLine	getLine(unsigned int lineIndex)
+		{
+			if (safetyChecks)
+			{
+				if (lineIndex >= mPixelSize.y)
+				{
+					return DrawerLine(nullptr, 0, nullptr);
+				}
 			}
 
-			if (useZ)
-			{
-				mZBuffer[px + py * mPixelSizeX] = Z;
-			}
+			unsigned int linepos = lineIndex * mPixelSize.x;
+
+			return DrawerLine(&mPixelBuffer[linepos], mPixelSize.x, &mZBuffer[linepos]);
 		}
 	};
 }
