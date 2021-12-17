@@ -11,7 +11,7 @@ namespace O3DCppEngine
 	{
 	protected:
 
-		virtual void	render(const DisplayBase* disp) = 0;
+		virtual void	render(DisplayBase* disp) = 0;
 
 		PixelBufferDrawer<true, false>	getUnsafePixelDrawer(const DisplayBase* disp) const;
 

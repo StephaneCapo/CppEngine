@@ -5,13 +5,18 @@
 #include "Segment2D.h"
 #include "Rectangle2D.h"
 #include "Texture.h"
+#include "Sprite.h"
 
 //#define CONSOLE_DISPLAY
 
 using namespace O3DCppEngine;
 
+Factory* CppEngine::mFactory=nullptr;
+
 CppEngine::CppEngine()
 {
+	if (mFactory) // already done
+		return;
 	// init Factory
 	mFactory = new Factory();
 
@@ -26,6 +31,7 @@ CppEngine::CppEngine()
 	mFactory->registerClass("Rectangle2D", CREATION_FUNC(Rectangle2D));
 
 	mFactory->registerClass("Texture", CREATION_FUNC(Texture));
+	mFactory->registerClass("Sprite", CREATION_FUNC(Sprite));
 }
 
 CppEngine::~CppEngine()

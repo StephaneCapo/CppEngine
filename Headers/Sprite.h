@@ -1,5 +1,7 @@
 #pragma once
+#include "CppEngine.h"
 #include "Shape2D.h"
+#include "Texture.h"
 
 namespace O3DCppEngine
 {
@@ -10,12 +12,12 @@ namespace O3DCppEngine
 		DECLARE_CLASS(Sprite);
 	protected:
 
-		std::string	mTextureName;
-
-		void	init() override;
-		void	close() override;
+		std::string		mTextureName;
+		sp<Texture>		mTexture;
 
 	public:
+		void	init() override;
+		void	close() override;
 
 		std::string getTextureName()
 		{
@@ -27,7 +29,7 @@ namespace O3DCppEngine
 			mTextureName = name;
 		}
 		
-		void	render(const DisplayBase* disp) override;
+		void	render(DisplayBase* disp) override;
 
 	};
 }

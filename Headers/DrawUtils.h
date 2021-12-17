@@ -23,9 +23,27 @@ namespace O3DCppEngine
 		return ((rb1 + rb2) & 0xFF00FF) | (((ag1 + ag2) << 8) & 0xFF00FF00);
 	}
 
+	inline unsigned int multColor(unsigned int colora, unsigned int colorb)
+	{
+		unsigned int result = 0;
+		for (unsigned int i = 0; i < 4; i++)
+		{
+			unsigned int decal = (i << 3);
+			unsigned int compa = (colora & (0xFF << decal))>> decal;
+			unsigned int compb = (colorb & (0xFF << decal))>> decal;
+
+			result |= (((compa * compb) >> 8) & 0xFF) << decal;
+		}
+		return result;
+	}
+
 	// RGBA to unsigned int
 #define ENCODE_COLOR(r,g,b,a) ((unsigned int)((r)|(g<<8)|(b<<16)|(a<<24)))
 
 	typedef unsigned int	RGBAColor;
-	typedef vect2Df			TextureUV;
+	class TextureUV : public vect2Df
+	{
+	public:
+		using vect2Df::vect2Df;
+	};
 }

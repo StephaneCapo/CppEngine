@@ -160,7 +160,7 @@
     <ClCompile Include="..\Sources\EngineManagedClass.cpp" />
     <ClCompile Include="..\Sources\Factory.cpp" />
     <ClCompile Include="..\Sources\PixelBufferDrawer.cpp" />
-    <ClCompile Include="..\Sources\Poly_3_4_Rasterizer.cpp" />
+    <ClCompile Include="..\Sources\ConvexPolyRasterizer.cpp" />
     <ClCompile Include="..\Sources\Rectangle2D.cpp" />
     <ClCompile Include="..\Sources\Segment2D.cpp" />
     <ClCompile Include="..\Sources\Shape2D.cpp" />
@@ -184,11 +184,12 @@
     <ClInclude Include="..\Headers\DisplayBase.h" />
     <ClInclude Include="..\Headers\CppEngine.h" />
     <ClInclude Include="..\Headers\Drawable.h" />
+    <ClInclude Include="..\Headers\DrawContext.h" />
     <ClInclude Include="..\Headers\DrawUtils.h" />
     <ClInclude Include="..\Headers\EngineManagedClass.h" />
     <ClInclude Include="..\Headers\Factory.h" />
     <ClInclude Include="..\Headers\PixelBufferDrawer.h" />
-    <ClInclude Include="..\Headers\Poly_3_4_Rasterizer.h" />
+    <ClInclude Include="..\Headers\ConvexPolyRasterizer.h" />
     <ClInclude Include="..\Headers\Rectangle2D.h" />
     <ClInclude Include="..\Headers\Segment2D.h" />
     <ClInclude Include="..\Headers\Shape2D.h" />

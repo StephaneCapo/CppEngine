@@ -9,7 +9,7 @@ vect2Df& Segment2D::operator [](size_t index)
 	return mPoses[index];
 }
 
-void	Segment2D::render(const DisplayBase* disp)
+void	Segment2D::render(DisplayBase* disp)
 {
 	// TODO optimize this (a lot)
 	vect2Df	transformPoses[2];

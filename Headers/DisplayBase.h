@@ -4,7 +4,8 @@
 #include "Drawable.h"
 #include "Texture.h"
 #include "PixelBufferDrawer.h"
-#include "Poly_3_4_Rasterizer.h"
+#include "ConvexPolyRasterizer.h"
+#include "DrawContext.h"
 
 namespace O3DCppEngine
 {
@@ -27,6 +28,8 @@ namespace O3DCppEngine
 		unsigned int*	mPixelBuffer = nullptr; // RGBA
 		float*			mZBuffer = nullptr; // Z
 		float			m2DCurrentDisplayZ=0.0f;
+
+		DrawContext		mDrawContext;
 
 		// the drawable list to be draw in the display at each swap
 		std::vector<std::shared_ptr<Drawable>>	mDrawableList;
@@ -90,13 +93,17 @@ namespace O3DCppEngine
 		template <typename ... components>
 		void rasterizePoly(std::vector<std::tuple<components...>>& verticelist) const;
 
+		DrawContext& getDrawContext()
+		{
+			return mDrawContext;
+		}
 	};
 
 	template <typename ... components>
 	void DisplayBase::rasterizePoly(std::vector<std::tuple<components...>>& verticelist) const
 	{
 		PixelBufferDrawer<true, false>	drawer = getUnsafePixelDrawer();
-		Poly_3_4_Rasterizer<true, components...>		rast(drawer);
+		ConvexPolyRasterizer<true, components...>		rast(drawer, &mDrawContext);
 
 		rast.draw(verticelist);
 	}

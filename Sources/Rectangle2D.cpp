@@ -10,7 +10,7 @@ vect2Df& Rectangle2D::operator [](size_t index)
 	return mPoses[index];
 }
 
-void	Rectangle2D::render(const DisplayBase* disp)
+void	Rectangle2D::render(DisplayBase* disp)
 {
 	vect2Df	transformPoses[4];
 

@@ -23,6 +23,12 @@ public:
 	
 	}
 
+	template<typename otherT>
+	vect2D(const vect2D<otherT>& other) : x((T)other.x), y((T)other.y)
+	{
+
+	}
+
 	~vect2D()
 	{
 		
@@ -128,6 +134,7 @@ T& vect2D<T>::operator [](size_t index)
 
 typedef vect2D<float>				vect2Df;
 typedef vect2D<unsigned int>		vect2Dui;
+typedef vect2D<int>					vect2Di;
 
 template<typename T>
 inline bool operator==(const vect2D<T>& a, const vect2D<T>& b)

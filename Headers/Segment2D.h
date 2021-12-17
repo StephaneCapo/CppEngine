@@ -38,7 +38,7 @@ namespace O3DCppEngine
 
 		// operateur pour récupérer une des points du segment
 		vect2Df& operator [](size_t index);
-		void	render(const DisplayBase* disp) override;
+		void	render(DisplayBase* disp) override;
 
 	};
 }

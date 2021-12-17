@@ -12,12 +12,7 @@ namespace O3DCppEngine
 		vect2Dui		mPixelSize;
 		unsigned int*	mPixelBuffer;
 		float*			mZBuffer = nullptr;
-
-		
-
 	public:
-
-		
 
 		class DrawerLine
 		{

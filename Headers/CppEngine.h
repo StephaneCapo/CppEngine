@@ -14,7 +14,7 @@ protected:
 
 	// Factory is not directly accessible
 	// use getFactory to access factory methods
-	O3DCppEngine::Factory* mFactory=nullptr;
+	static O3DCppEngine::Factory* mFactory;
 
 public:
 	// constructor, init Engine 
@@ -23,7 +23,7 @@ public:
 	~CppEngine();
 
 	// return the Factory singleton
-	O3DCppEngine::Factory& getFactory() const
+	static O3DCppEngine::Factory& getFactory() 
 	{
 		return *mFactory;
 	}

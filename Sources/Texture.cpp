@@ -27,18 +27,16 @@ void	Texture::init()
 	mPixelBuffer = new unsigned int[mPixelSize.x * mPixelSize.y];
 	unsigned int* writeBuffer = mPixelBuffer;
 
-	for (int j = 0; j < mPixelSize.y; j += 2)
+	for (size_t j = 0; j < mPixelSize.y; j ++)
 	{
-		for (int i = 0; i < mPixelSize.x; i += 2)
+		for (size_t i = 0; i < mPixelSize.x; i ++)
 		{
-			RGBAPixel px= getBitmapRGBA(BitmapInfo, bmpdata, i, j);
+			RGBAPixel px= getBitmapRGBA(BitmapInfo, bmpdata, (int)i, (int)j);
 			*writeBuffer = *(unsigned int*)&px;
-			
 			writeBuffer++;
 		}
 	}
-	
-	
+
 }
 void	Texture::close()
 {
