@@ -16,6 +16,12 @@ namespace O3DCppEngine
 		HWND mConsoleHandle;
 		HDC  mDeviceContext;
 
+		// used for drawing/copying
+		HDC		mMemHdc;
+		char*	mBuffer=nullptr;
+		HBITMAP mBitmap;
+
+
 		// max displaySize for bitmap display is 1024*720
 		vect2Dui	getMaxPixelSize() const override
 		{

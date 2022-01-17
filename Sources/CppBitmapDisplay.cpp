@@ -14,11 +14,27 @@ void CppBitmapDisplay::init()
 	mDeviceContext = GetDC(mConsoleHandle);
 	mIsInit = true;
 	clear(ENCODE_COLOR(0, 0, 0, 0xFF), 0.0f);
+
+	// prepare bitmap copy
+	mMemHdc = CreateCompatibleDC(mDeviceContext);
+
+	BITMAPINFO bi;
+	ZeroMemory(&bi, sizeof(BITMAPINFO));
+	bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	bi.bmiHeader.biWidth = mPixelSizeX;
+	bi.bmiHeader.biHeight = mPixelSizeY;
+	bi.bmiHeader.biPlanes = 1;
+	bi.bmiHeader.biBitCount = 32;
+	mBitmap = CreateDIBSection(mDeviceContext, &bi, DIB_RGB_COLORS, (void**)&mBuffer, NULL, 0);
 }
 
 
 void CppBitmapDisplay::close()
 {
+
+	DeleteDC(mMemHdc);
+	DeleteObject(mBitmap);
+
 	ReleaseDC(mConsoleHandle, mDeviceContext);
 
 	if (mDisplaySettings)
@@ -30,19 +46,10 @@ void CppBitmapDisplay::close()
 void	CppBitmapDisplay::swap()
 {
 	renderAll();
-	HDC memHdc = CreateCompatibleDC(mDeviceContext);
-	BITMAPINFO bi;
-	ZeroMemory(&bi, sizeof(BITMAPINFO));
-	bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-	bi.bmiHeader.biWidth = mPixelSizeX;
-	bi.bmiHeader.biHeight = mPixelSizeY;
-	bi.bmiHeader.biPlanes = 1;
-	bi.bmiHeader.biBitCount = 32;
-	char* buffer;
-	HBITMAP bitmap = CreateDIBSection(mDeviceContext, &bi, DIB_RGB_COLORS, (void**)&buffer, NULL, 0);
 	
-	char* writeBuffer = buffer;
+	char* writeBuffer = mBuffer;
 
+	// copy mPixelBuffer to display buffer
 	for (int j = mPixelSizeY-1; j >=0; j--)
 	{
 		unsigned int lineOffset = j * mPixelSizeX;
@@ -56,14 +63,10 @@ void	CppBitmapDisplay::swap()
 		}
 	}
 
-	//memcpy(buffer, mPixelBuffer, mPixelSizeX * mPixelSizeY * sizeof(unsigned int));
-
 	HBITMAP restore;
-	restore = (HBITMAP)SelectObject(memHdc, bitmap);
-	BitBlt(mDeviceContext, 0, 0, mPixelSizeX, mPixelSizeY, memHdc, 0, 0, SRCCOPY);
-	SelectObject(memHdc, restore);
-	DeleteDC(memHdc);
-	DeleteObject(bitmap);
+	restore = (HBITMAP)SelectObject(mMemHdc, mBitmap);
+	BitBlt(mDeviceContext, 0, 0, mPixelSizeX, mPixelSizeY, mMemHdc, 0, 0, SRCCOPY);
+	SelectObject(mMemHdc, restore);
 
 }
 
